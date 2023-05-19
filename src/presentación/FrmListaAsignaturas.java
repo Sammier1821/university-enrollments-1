@@ -14,7 +14,9 @@ public class FrmListaAsignaturas extends javax.swing.JFrame {
         this.parent = parent;
         parent.setVisible(false);
         setModeloTable();
-        setDatosTable();
+        if (BLAsignaturas.getNumeroRegistros() > 0) {
+            setDatosTable();            
+        }
     }
 
     @SuppressWarnings("unchecked")

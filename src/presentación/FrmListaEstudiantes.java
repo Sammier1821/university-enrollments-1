@@ -14,7 +14,9 @@ public class FrmListaEstudiantes extends javax.swing.JFrame {
         this.parent = parent;
         parent.setVisible(false);
         setModeloTable();
-        setDatosTable();
+        if (BLEstudiantes.getNumeroRegistros() > 0) {
+            setDatosTable();
+        }
     }
 
     @SuppressWarnings("unchecked")
