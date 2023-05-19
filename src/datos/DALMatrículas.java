@@ -57,7 +57,7 @@ public class DALMatrículas {
                 flujo.writeUTF(matricula.getPeriodo().getSemestre());  // 20
                 
                 //CODIGO estudiante
-                flujo.writeUTF(matricula.getEstudiante().getCode());    // Code.length() * 2   == 20 max
+                flujo.writeUTF(matricula.getEstudiante().getCodigo());    // Code.length() * 2   == 20 max
                 
                 //CODIGOS asignatura
                 for (Asignatura asignatura : matricula.getAsignaturasMatriculadas()) {
@@ -97,7 +97,7 @@ public class DALMatrículas {
             
             codigoEstudiante = flujo.readUTF();
             for (Estudiante student : DALEstudiantes.getEstudiantes()) {
-              if (student.getCode().compareTo(codigoEstudiante) == 0) {
+              if (student.getCodigo().compareTo(codigoEstudiante) == 0) {
                 estudiante = student;
                 break;
               }

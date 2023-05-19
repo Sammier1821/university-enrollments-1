@@ -55,7 +55,7 @@ public class Matricula {
     public int getTamaño() {
         int tamaño = 0;
         tamaño += (getPeriodo().toString().length() + 
-        getEstudiante().getCode().length())*2 + 4 + (4 + 4 + 4); // LocalDate: 3 int
+        getEstudiante().getCodigo().length())*2 + 4 + (4 + 4 + 4); // LocalDate: 3 int
         for (Asignatura asignatura : getAsignaturasMatriculadas()) {
             tamaño += asignatura.getCodigo().length();          
         }

@@ -5,6 +5,7 @@ import java.util.*;
 import entidades.*;
 
 public class DALEstudiantes {
+    
     private static final String NOMBRE_ARCHIVO = "data_estudiantes.txt";
     private static RandomAccessFile flujo;
     private static final int TMREG = 236;
@@ -43,8 +44,8 @@ public class DALEstudiantes {
             }else{
                 crearFlujo();
                 flujo.seek(posicion*TMREG);
-                flujo.writeUTF(estudiante.getCode());
-                flujo.writeUTF(estudiante.getDNI());
+                flujo.writeUTF(estudiante.getCodigo());
+                flujo.writeUTF(estudiante.getDni());
                 flujo.writeUTF(estudiante.getNombre());
                 flujo.writeUTF(estudiante.getApellidos());
                 flujo.writeUTF(estudiante.getDireccion());

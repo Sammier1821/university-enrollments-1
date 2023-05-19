@@ -1,6 +1,8 @@
 package presentación;
 
+import entidades.Estudiante;
 import javax.swing.table.DefaultTableModel;
+import lógica.BLEstudiantes;
 
 public class FrmListaEstudiantes extends javax.swing.JFrame {
 
@@ -36,7 +38,7 @@ public class FrmListaEstudiantes extends javax.swing.JFrame {
         bg.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
         panelTitle.setBackground(new java.awt.Color(57, 72, 103));
-        panelTitle.setPreferredSize(new java.awt.Dimension(960, 40));
+        panelTitle.setPreferredSize(new java.awt.Dimension(1060, 40));
         panelTitle.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 6));
 
         title.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -47,10 +49,12 @@ public class FrmListaEstudiantes extends javax.swing.JFrame {
         bg.add(panelTitle);
 
         panelDatos.setBackground(new java.awt.Color(57, 72, 103));
-        panelDatos.setPreferredSize(new java.awt.Dimension(800, 500));
-        panelDatos.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 20));
+        panelDatos.setPreferredSize(new java.awt.Dimension(900, 480));
+        panelDatos.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 40));
 
-        scrollPane.setPreferredSize(new java.awt.Dimension(600, 402));
+        scrollPane.setPreferredSize(new java.awt.Dimension(820, 400));
+
+        tblEstudiantes.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         scrollPane.setViewportView(tblEstudiantes);
 
         panelDatos.add(scrollPane);
@@ -78,11 +82,11 @@ public class FrmListaEstudiantes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -111,13 +115,33 @@ public class FrmListaEstudiantes extends javax.swing.JFrame {
         
         dtmEstudiantes.setColumnIdentifiers(encabezados);
         tblEstudiantes.setModel(dtmEstudiantes);
+        tblEstudiantes.getColumnModel().getColumn(0).
+                setPreferredWidth(90);
+        tblEstudiantes.getColumnModel().getColumn(1).
+                setPreferredWidth(70);
+        tblEstudiantes.getColumnModel().getColumn(2).
+                setPreferredWidth(210);
+        tblEstudiantes.getColumnModel().getColumn(3).
+                setPreferredWidth(120);
+        tblEstudiantes.getColumnModel().getColumn(4).
+                setPreferredWidth(310);
+        
         
     }
 
     private void setDatosTable() {
+        Object[] datos = new Object[dtmEstudiantes.getColumnCount()];
         
+        for (Estudiante estudiante : BLEstudiantes.getEstudiantes()) {
+            datos[0] = estudiante.getCodigo();
+            datos[1] = estudiante.getDni();
+            datos[2] = estudiante.getNombre();
+            datos[3] = estudiante.getApellidos();
+            datos[4] = estudiante.getDireccion();
+            dtmEstudiantes.addRow(datos);
+        }
         
-        
+        tblEstudiantes.setModel(dtmEstudiantes);
     }
     
     

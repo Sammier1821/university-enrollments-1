@@ -215,11 +215,19 @@ public class FrmRegistroEstudiante extends javax.swing.JFrame {
         String nombre = txtNombre.getText();
         String apellidos = txtApellidos.getText();
         String direccion = txtDireccion.getText();
+        String mensaje = BLEstudiantes.escribirEstudiante(codigo, dni, nombre, 
+                apellidos, direccion);
         
-        if(BLEstudiantes.escribirEstudiante(codigo, dni, nombre, apellidos, direccion).compareTo("ok") == 0) {
-            JOptionPane.showMessageDialog(null, "Estudiante guardado.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        if(mensaje.compareTo("ok") == 0) {
+            JOptionPane.showMessageDialog(null, 
+                    "¡Estudiante Guardado!", "Información", 
+                    JOptionPane.INFORMATION_MESSAGE);
             habilitarComponentes(false);
             limpiarComponentes();
+        } else {
+            JOptionPane.showMessageDialog(null, 
+                    "Estudiante no guardado: " + mensaje, "Advertencia", 
+                    JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
