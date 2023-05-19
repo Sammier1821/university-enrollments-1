@@ -1,10 +1,12 @@
 package presentación;
 
+import entidades.Asignatura;
 import javax.swing.table.DefaultTableModel;
+import lógica.BLAsignaturas;
 
 public class FrmListaAsignaturas extends javax.swing.JFrame {
 
-    DefaultTableModel dtmEstudiantes = new DefaultTableModel();
+    private DefaultTableModel dtmAsignaturas = new DefaultTableModel();
     
     public FrmListaAsignaturas(javax.swing.JFrame parent) {
         initComponents();
@@ -22,15 +24,16 @@ public class FrmListaAsignaturas extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         panelTitle = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        panelInfo = new javax.swing.JPanel();
+        lblCodigoAsignatura = new javax.swing.JLabel();
+        cboCodigoAsignatura = new javax.swing.JComboBox<>();
+        lblPeriodoAcademico = new javax.swing.JLabel();
+        cboPeriodoAcademico = new javax.swing.JComboBox<>();
+        btnFiltrar = new javax.swing.JButton();
         panelDatos = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
-        tblEstudiantes = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        tblAsignaturas = new javax.swing.JTable();
+        panelButtons = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,48 +53,61 @@ public class FrmListaAsignaturas extends javax.swing.JFrame {
 
         bg.add(panelTitle);
 
-        jPanel3.setBackground(new java.awt.Color(57, 72, 103));
-        jPanel3.setPreferredSize(new java.awt.Dimension(960, 50));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 10));
+        panelInfo.setBackground(new java.awt.Color(57, 72, 103));
+        panelInfo.setPreferredSize(new java.awt.Dimension(960, 50));
+        panelInfo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 20, 10));
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.white);
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Código de asignatura:");
-        jLabel4.setPreferredSize(new java.awt.Dimension(159, 30));
-        jPanel3.add(jLabel4);
+        lblCodigoAsignatura.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        lblCodigoAsignatura.setForeground(java.awt.Color.white);
+        lblCodigoAsignatura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCodigoAsignatura.setText("Código de asignatura:");
+        lblCodigoAsignatura.setPreferredSize(new java.awt.Dimension(159, 30));
+        panelInfo.add(lblCodigoAsignatura);
 
-        jComboBox1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jComboBox1.setPreferredSize(new java.awt.Dimension(150, 30));
-        jPanel3.add(jComboBox1);
+        cboCodigoAsignatura.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        cboCodigoAsignatura.setPreferredSize(new java.awt.Dimension(150, 30));
+        panelInfo.add(cboCodigoAsignatura);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Periodo Académico:");
-        jLabel1.setPreferredSize(new java.awt.Dimension(159, 30));
-        jPanel3.add(jLabel1);
+        lblPeriodoAcademico.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        lblPeriodoAcademico.setForeground(java.awt.Color.white);
+        lblPeriodoAcademico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPeriodoAcademico.setText("Periodo Académico:");
+        lblPeriodoAcademico.setPreferredSize(new java.awt.Dimension(159, 30));
+        panelInfo.add(lblPeriodoAcademico);
 
-        jComboBox2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jComboBox2.setPreferredSize(new java.awt.Dimension(150, 30));
-        jPanel3.add(jComboBox2);
+        cboPeriodoAcademico.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        cboPeriodoAcademico.setPreferredSize(new java.awt.Dimension(150, 30));
+        panelInfo.add(cboPeriodoAcademico);
 
-        bg.add(jPanel3);
+        btnFiltrar.setBackground(new java.awt.Color(155, 164, 181));
+        btnFiltrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnFiltrar.setForeground(new java.awt.Color(33, 42, 62));
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarActionPerformed(evt);
+            }
+        });
+        panelInfo.add(btnFiltrar);
+
+        bg.add(panelInfo);
 
         panelDatos.setBackground(new java.awt.Color(57, 72, 103));
-        panelDatos.setPreferredSize(new java.awt.Dimension(800, 500));
-        panelDatos.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 20));
+        panelDatos.setPreferredSize(new java.awt.Dimension(800, 480));
+        panelDatos.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 40));
 
-        scrollPane.setPreferredSize(new java.awt.Dimension(600, 402));
-        scrollPane.setViewportView(tblEstudiantes);
+        scrollPane.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        tblAsignaturas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        scrollPane.setViewportView(tblAsignaturas);
 
         panelDatos.add(scrollPane);
 
         bg.add(panelDatos);
 
-        jPanel2.setBackground(new java.awt.Color(57, 72, 103));
-        jPanel2.setPreferredSize(new java.awt.Dimension(140, 400));
-        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
+        panelButtons.setBackground(new java.awt.Color(57, 72, 103));
+        panelButtons.setPreferredSize(new java.awt.Dimension(140, 400));
+        panelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 20));
 
         btnSalir.setBackground(new java.awt.Color(155, 164, 181));
         btnSalir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -102,9 +118,9 @@ public class FrmListaAsignaturas extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSalir);
+        panelButtons.add(btnSalir);
 
-        bg.add(jPanel2);
+        bg.add(panelButtons);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +130,7 @@ public class FrmListaAsignaturas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -125,19 +141,24 @@ public class FrmListaAsignaturas extends javax.swing.JFrame {
         parent.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JComboBox<String> cboCodigoAsignatura;
+    private javax.swing.JComboBox<String> cboPeriodoAcademico;
+    private javax.swing.JLabel lblCodigoAsignatura;
+    private javax.swing.JLabel lblPeriodoAcademico;
+    private javax.swing.JPanel panelButtons;
     private javax.swing.JPanel panelDatos;
+    private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel panelTitle;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JTable tblEstudiantes;
+    private javax.swing.JTable tblAsignaturas;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JFrame parent;
@@ -146,14 +167,31 @@ public class FrmListaAsignaturas extends javax.swing.JFrame {
     
     private void setModeloTable() {
         
-        dtmEstudiantes.setColumnIdentifiers(encabezados);
-        tblEstudiantes.setModel(dtmEstudiantes);
-        
+        dtmAsignaturas.setColumnIdentifiers(encabezados);
+        tblAsignaturas.setModel(dtmAsignaturas);
+        tblAsignaturas.getColumnModel().getColumn(0).
+                setPreferredWidth(70);
+        tblAsignaturas.getColumnModel().getColumn(1).
+                setPreferredWidth(330);
+        tblAsignaturas.getColumnModel().getColumn(2).
+                setPreferredWidth(100);
+        tblAsignaturas.getColumnModel().getColumn(3).
+                setPreferredWidth(100);
     }
 
     private void setDatosTable() {
         
+        Object[] data = new Object[dtmAsignaturas.getColumnCount()];
         
+        for (Asignatura asignatura : BLAsignaturas.getAsignaturas()) {
+            data[0] = asignatura.getCodigo();
+            data[1] = asignatura.getNombre();
+            data[2] = asignatura.getCiclo();
+            data[3] = asignatura.getCreditos();
+            dtmAsignaturas.addRow(data);
+        }
+        
+        tblAsignaturas.setModel(dtmAsignaturas);
         
     }
     
