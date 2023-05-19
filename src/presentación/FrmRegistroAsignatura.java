@@ -1,6 +1,8 @@
 package presentación;
 
 import entidades.Asignatura;
+import javax.swing.JOptionPane;
+import lógica.BLAsignaturas;
 
 public class FrmRegistroAsignatura extends javax.swing.JFrame {
 
@@ -22,7 +24,7 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
         panelDatos = new javax.swing.JPanel();
         panelCódigo = new javax.swing.JPanel();
         lblCódigo = new javax.swing.JLabel();
-        txtCódigo = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         panelCiclo = new javax.swing.JPanel();
         lblCiclo = new javax.swing.JLabel();
         cboCiclo = new javax.swing.JComboBox<>();
@@ -68,10 +70,10 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
         lblCódigo.setText("Código:");
         panelCódigo.add(lblCódigo, java.awt.BorderLayout.CENTER);
 
-        txtCódigo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtCódigo.setEnabled(false);
-        txtCódigo.setPreferredSize(new java.awt.Dimension(200, 25));
-        panelCódigo.add(txtCódigo, java.awt.BorderLayout.PAGE_END);
+        txtCodigo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtCodigo.setEnabled(false);
+        txtCodigo.setPreferredSize(new java.awt.Dimension(200, 25));
+        panelCódigo.add(txtCodigo, java.awt.BorderLayout.PAGE_END);
 
         panelDatos.add(panelCódigo);
 
@@ -85,7 +87,7 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
         panelCiclo.add(lblCiclo, java.awt.BorderLayout.CENTER);
 
         cboCiclo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        cboCiclo.setFocusCycleRoot(true);
+        cboCiclo.setEnabled(false);
         cboCiclo.setPreferredSize(new java.awt.Dimension(200, 25));
         panelCiclo.add(cboCiclo, java.awt.BorderLayout.PAGE_END);
 
@@ -133,6 +135,11 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
         btnNuevo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(33, 42, 62));
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         panelButtons.add(btnNuevo);
 
         btnGuardar.setBackground(new java.awt.Color(155, 164, 181));
@@ -140,6 +147,11 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
         btnGuardar.setForeground(new java.awt.Color(33, 42, 62));
         btnGuardar.setText("Guardar");
         btnGuardar.setEnabled(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         panelButtons.add(btnGuardar);
 
         btnSalir.setBackground(new java.awt.Color(155, 164, 181));
@@ -174,6 +186,31 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
         parent.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        habilitarComponentes(true);
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String codigo = txtCodigo.getText();
+        String nombre = txtNombre.getText();
+        String ciclo = cboCiclo.getSelectedItem().toString();
+        int creditos = Integer.parseInt(txtCreditos.getText());
+        String mensaje = BLAsignaturas.escribirAsignatura(
+                codigo, nombre, ciclo, creditos);
+        if (mensaje.compareTo("ok") == 0) {
+            JOptionPane.showMessageDialog(this, 
+                    "¡Asignatura Guardada!", "Información", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            limpiarComponentes();
+            habilitarComponentes(false);
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                    "Asignatura no guardada: " + mensaje, "Advertencia", 
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnGuardar;
@@ -192,8 +229,8 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
     private javax.swing.JPanel panelNombre;
     private javax.swing.JPanel panelTitle;
     private javax.swing.JLabel title;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCreditos;
-    private javax.swing.JTextField txtCódigo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
     private javax.swing.JFrame parent;
@@ -201,5 +238,21 @@ public class FrmRegistroAsignatura extends javax.swing.JFrame {
     private void setModeloBox() {
         for (String string : Asignatura.ciclos)
             cboCiclo.addItem(string);
+    }
+
+    private void habilitarComponentes(boolean value) {
+        btnGuardar.setEnabled(value);
+        txtCodigo.setEnabled(value);
+        cboCiclo.setEnabled(value);
+        txtCreditos.setEnabled(value);
+        txtNombre.setEnabled(value);
+        btnNuevo.setEnabled(!value);
+    }
+
+    private void limpiarComponentes() {
+        txtCodigo.setText(null);
+        cboCiclo.setSelectedItem(0);
+        txtCreditos.setText(null);
+        txtNombre.setText(null);
     }
 }

@@ -47,6 +47,7 @@ public class DALAsignaturas {
                 flujo.writeUTF(asignatura.getNombre());
                 flujo.writeUTF(asignatura.getCiclo());
                 flujo.writeInt(asignatura.getCreditos());
+                mensaje = "ok";
             }
         }catch(IOException ex){
             mensaje = "Error de E/S " + ex.getMessage();

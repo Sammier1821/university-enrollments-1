@@ -1,23 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lógica;
 
 import java.util.*;
 import entidades.*;
 import datos.*;
-/**
- *
- * @author Usuario
- */
+
 public class BLAsignaturas {
     
-   public static String escribirAsignatura(String codigo,  String nombre, String ciclo, int creditos) {
+    public static String escribirAsignatura(String codigo, String nombre, String ciclo, int creditos) {
         String mensaje = null;
-        Asignatura asignatura = null;
-        asignatura = new Asignatura(codigo,nombre,ciclo,creditos);
-        mensaje = DALAsignaturas.escribirAsignatura(asignatura);
+        Asignatura asignatura;
+        
+        if (codigo.length() <= 4 && nombre.length() <= 50 
+                && creditos >= 1 && creditos <= 4) {
+            asignatura = new Asignatura(codigo, nombre, ciclo, creditos);
+            mensaje = DALAsignaturas.escribirAsignatura(asignatura);
+        } else {
+            mensaje = "Número de caractéres o créditos fuera de límite";
+        }
+        
         return mensaje;
     }
     

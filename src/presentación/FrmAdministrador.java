@@ -1,24 +1,19 @@
 package presentación;
 
+import lógica.BLPeriodosAcademicos;
+
 public class FrmAdministrador extends javax.swing.JFrame {
 
     public FrmAdministrador() {
         initComponents();
         this.setLocationRelativeTo(null);
+        habilitarComponentes();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRegistroSecretarios = new javax.swing.JButton();
-        btnRegistroJefes = new javax.swing.JButton();
-        btnListadoSecres = new javax.swing.JButton();
-        btnListadoAutos = new javax.swing.JButton();
-        btnListadoJefes = new javax.swing.JButton();
-        btnRegistroAutos1 = new javax.swing.JButton();
-        btnRegistroSecretarios1 = new javax.swing.JButton();
-        btnRegistroSecretarios2 = new javax.swing.JButton();
         panel = new javax.swing.JPanel();
         panelTitle = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
@@ -42,57 +37,6 @@ public class FrmAdministrador extends javax.swing.JFrame {
         panelMatriculasButtons = new javax.swing.JPanel();
         btnListaMatriculas = new javax.swing.JButton();
         btnRegistroNotas = new javax.swing.JButton();
-
-        btnRegistroSecretarios.setText("Registro de matriculas");
-        btnRegistroSecretarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroSecretariosActionPerformed(evt);
-            }
-        });
-
-        btnRegistroJefes.setText("Registro de asignaturas");
-        btnRegistroJefes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroJefesActionPerformed(evt);
-            }
-        });
-
-        btnListadoSecres.setText("Listado de matriculas");
-        btnListadoSecres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListadoSecresActionPerformed(evt);
-            }
-        });
-
-        btnListadoAutos.setText("Listado de estudiantes (mostrando cursos matriculados)");
-        btnListadoAutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListadoAutosActionPerformed(evt);
-            }
-        });
-
-        btnListadoJefes.setText("Listado de asignaturas (mostrando estudiantes matriculados)");
-        btnListadoJefes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListadoJefesActionPerformed(evt);
-            }
-        });
-
-        btnRegistroAutos1.setText("Registro de estudiantes");
-        btnRegistroAutos1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroAutos1ActionPerformed(evt);
-            }
-        });
-
-        btnRegistroSecretarios1.setText("(1RO AL ENTRAR AL SUV3, DEMAS BOTONES BLOQUEADOS) Registro de periodo académico");
-        btnRegistroSecretarios1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroSecretarios1ActionPerformed(evt);
-            }
-        });
-
-        btnRegistroSecretarios2.setText("Registro de notas 1) Seleccionar estudiante 2) Seleccionar cursos 3) Definir notas");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -268,6 +212,7 @@ public class FrmAdministrador extends javax.swing.JFrame {
         btnRegistroNotas.setForeground(new java.awt.Color(33, 42, 62));
         btnRegistroNotas.setText("Registrar notas");
         btnRegistroNotas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRegistroNotas.setEnabled(false);
         btnRegistroNotas.setPreferredSize(new java.awt.Dimension(175, 30));
         panelMatriculasButtons.add(btnRegistroNotas);
 
@@ -279,56 +224,15 @@ public class FrmAdministrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegistroSecretariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroSecretariosActionPerformed
-//        if (ListaEmpleados.getNumeroJefesDeZona() == 0) {
-//            JOptionPane.showMessageDialog(this, "No hay instancias de jefes de zona", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-//        } else {
-//            RegistroSecretarios window = new RegistroSecretarios(this);
-//            window.setVisible(true);
-//        }
-
-    }//GEN-LAST:event_btnRegistroSecretariosActionPerformed
-
-    private void btnRegistroJefesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroJefesActionPerformed
-//        if (ListaDatos.getEmpresa().getNumeroAutomoviles() == 0) {
-//            JOptionPane.showMessageDialog(this, "No hay instancias de automóviles", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-//        } else {
-//            RegistroJefesDeZona window = new RegistroJefesDeZona(this);
-//            window.setVisible(true);
-//        }
-    }//GEN-LAST:event_btnRegistroJefesActionPerformed
-
-    private void btnListadoSecresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoSecresActionPerformed
-//        ListadoSecretarios window = new ListadoSecretarios(this);
-//        window.setVisible(true);
-    }//GEN-LAST:event_btnListadoSecresActionPerformed
-
-    private void btnListadoAutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoAutosActionPerformed
-//        ListadoAutomoviles window = new ListadoAutomoviles(this);
-//        window.setVisible(true);
-    }//GEN-LAST:event_btnListadoAutosActionPerformed
-
-    private void btnListadoJefesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoJefesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListadoJefesActionPerformed
-
-    private void btnRegistroAutos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroAutos1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroAutos1ActionPerformed
-
-    private void btnRegistroSecretarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroSecretarios1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroSecretarios1ActionPerformed
 
     private void btnRegistroEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroEstudianteActionPerformed
         new FrmRegistroEstudiante(this).setVisible(true);
@@ -358,18 +262,10 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btnListaAsignaturas;
     private javax.swing.JButton btnListaEstudiantes;
     private javax.swing.JButton btnListaMatriculas;
-    private javax.swing.JButton btnListadoAutos;
-    private javax.swing.JButton btnListadoJefes;
-    private javax.swing.JButton btnListadoSecres;
     private javax.swing.JButton btnRegistroAsignatura;
-    private javax.swing.JButton btnRegistroAutos1;
     private javax.swing.JButton btnRegistroEstudiante;
-    private javax.swing.JButton btnRegistroJefes;
     private javax.swing.JButton btnRegistroNotas;
     private javax.swing.JButton btnRegistroPeriodoAcademico;
-    private javax.swing.JButton btnRegistroSecretarios;
-    private javax.swing.JButton btnRegistroSecretarios1;
-    private javax.swing.JButton btnRegistroSecretarios2;
     private javax.swing.JLabel icoFolder;
     private javax.swing.JLabel iconDocument;
     private javax.swing.JLabel lblListado;
@@ -387,4 +283,15 @@ public class FrmAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel panelTitle;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
+
+    private void habilitarComponentes() {
+        if (BLPeriodosAcademicos.existePeriodoAcademico()) {
+            btnRegistroNotas.setEnabled(true);
+            btnRegistroPeriodoAcademico.setEnabled(false);
+            lblPeriodoAcademico.setText("Periodo Académico: " 
+                    + BLPeriodosAcademicos.obtenerUltimoPeriodoAcademico());
+        } else {
+            
+        }
+    }
 }

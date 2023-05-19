@@ -2,8 +2,8 @@ package presentación;
 
 import javax.swing.JOptionPane;
 
-import lógica.BLEstudiante;
-import lógica.BLPeriodoAcademico;
+import lógica.BLEstudiantes;
+import lógica.BLPeriodosAcademicos;
 
 public class FrmRegistroEstudiante extends javax.swing.JFrame {
 
@@ -216,7 +216,7 @@ public class FrmRegistroEstudiante extends javax.swing.JFrame {
         String apellidos = txtApellidos.getText();
         String direccion = txtDireccion.getText();
         
-        if(BLEstudiante.escribirEstudiante(codigo, dni, nombre, apellidos, direccion).compareTo("ok") == 0) {
+        if(BLEstudiantes.escribirEstudiante(codigo, dni, nombre, apellidos, direccion).compareTo("ok") == 0) {
             JOptionPane.showMessageDialog(null, "Estudiante guardado.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             habilitarComponentes(false);
             limpiarComponentes();

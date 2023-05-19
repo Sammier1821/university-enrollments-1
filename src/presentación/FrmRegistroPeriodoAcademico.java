@@ -2,7 +2,7 @@ package presentación;
 
 import entidades.PeriodoAcademico;
 import javax.swing.JOptionPane;
-import lógica.BLPeriodoAcademico;
+import lógica.BLPeriodosAcademicos;
 
 public class FrmRegistroPeriodoAcademico extends javax.swing.JFrame {
 
@@ -153,11 +153,20 @@ public class FrmRegistroPeriodoAcademico extends javax.swing.JFrame {
         String semestre;
         año = Integer.parseInt(txtAño.getText());
         semestre = cboSemestre.getSelectedItem().toString();
-        if(BLPeriodoAcademico.guardarPeriodoAcademico(año, semestre))
-            JOptionPane.showMessageDialog(null, "Periodo academico guardado.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        habilitarComponentes(false);
-        limpiarComponentes();
-            
+        if(BLPeriodosAcademicos.guardarPeriodoAcademico(año, semestre)) {
+            JOptionPane.showMessageDialog(null,
+                    "¡Periodo Académico Guardado!",
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
+            habilitarComponentes(false);
+            limpiarComponentes();
+            parent.dispose();
+            this.dispose();
+            new FrmAdministrador().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Periodo académico no guardado.",
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed

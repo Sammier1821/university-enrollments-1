@@ -4,7 +4,7 @@ import java.util.*;
 import entidades.*;
 import datos.*;
 
-public class BLEstudiante {
+public class BLEstudiantes {
     
     public static String escribirEstudiante(String codigo, String dni, String nombre, String apellidos, String direccion) {
         String mensaje = null;

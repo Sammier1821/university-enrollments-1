@@ -91,7 +91,7 @@ public class DALPeriodosAcademicos {
         return lista;
     }
 
-    public static int getnumeroPeriodosAcademicos() {
+    public static int getNumeroPeriodosAcademicos() {
         try {
             crearFlujo();
             flujo.close();
